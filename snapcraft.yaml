@@ -1,0 +1,21 @@
+name: ngrok
+version: 2.2.8
+summary: ngrok secure introspectable tunnels to localhost.
+description: |
+  ngrok secure introspectable tunnels to localhost webhook development tool and debugging tool.
+
+grade: stable
+confinement: strict
+
+architectures: [amd64, i386]
+
+parts:
+  ngrok:
+    plugin: dump
+    source:
+      - on amd64: https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+      - on i386: https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-386.zip
+
+apps:
+  ngrok:
+    command: ngrok
