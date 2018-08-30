@@ -21,3 +21,4 @@ parts:
 apps:
   ngrok:
     command: ngrok
+    plugs: [network, network-bind]
