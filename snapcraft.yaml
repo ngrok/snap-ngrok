@@ -26,3 +26,9 @@ apps:
   ngrok:
     command: ngrok
     plugs: [network, network-bind, home]
+
+plugs:
+  ngrok-config-dir:
+    interface: personal-files
+    write:
+    - $HOME/.ngrok2
