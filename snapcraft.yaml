@@ -25,8 +25,6 @@ parts:
 plugs:
   ngrok-config:
     interface: personal-files
-    read:
-    - $HOME/.ngrok2
     write:
     - $HOME/.ngrok2
 
