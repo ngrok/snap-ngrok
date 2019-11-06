@@ -1,16 +1,18 @@
 name: ngrok
-version: latest
-version-script: cat $SNAPCRAFT_STAGE/version
+adopt-info: ngrok
 summary: ngrok secure introspectable tunnels to localhost.
 description: |
   ngrok secure introspectable tunnels to localhost webhook development tool and debugging tool.
 
+base: core18
 grade: stable
 confinement: strict
 
 architectures:
   - build-on: amd64
   - build-on: i386
+  - build-on: armhf
+  - build-on: arm64
 
 parts:
   ngrok:
@@ -18,17 +20,19 @@ parts:
     source:
       - on amd64: https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
       - on i386: https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-386.zip
-    override-prime: |
-      snapcraftctl prime
-      echo $(./ngrok --version | cut -d " " -f 3) > $SNAPCRAFT_STAGE/version
+      - on armhf: https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
+      - on arm64: https://bin.equinox.io/a/nmkK3DkqZEB/ngrok-2.2.8-linux-arm64.zip
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version $(./ngrok --version | cut -d " " -f 3)
+
+plugs:
+  ngrok-config:
+    interface: personal-files
+    write:
+    - $HOME/.ngrok2
 
 apps:
   ngrok:
     command: ngrok
-    plugs: [network, network-bind, home]
-
-plugs:
-  ngrok-config-dir:
-    interface: personal-files
-    write:
-    - $HOME/.ngrok2
+    plugs: [network, network-bind, home, ngrok-config]

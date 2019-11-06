@@ -20,3 +20,9 @@ ngrok captures and analyzes all traffic over the tunnel for later inspection and
 - Developing any services which consume webhooks (HTTP callbacks) by allowing you to replay those requests.
 - Debugging and understanding any web service by inspecting the HTTP traffic.
 - Running networked services on machines that are firewalled off from the Internet.
+
+## Installing
+```
+snap install ngrok
+snap connect ngrok:ngrok-config
+```
