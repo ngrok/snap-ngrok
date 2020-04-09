@@ -22,7 +22,6 @@ ngrok captures and analyzes all traffic over the tunnel for later inspection and
 - Running networked services on machines that are firewalled off from the Internet.
 
 ## Installing
-```
-snap install ngrok
-snap connect ngrok:ngrok-config
+```bash
+sudo snap install ngrok
 ```
