@@ -4,7 +4,7 @@ summary: ngrok secure introspectable tunnels to localhost.
 description: |
   ngrok secure introspectable tunnels to localhost webhook development tool and debugging tool.
 
-base: core18
+base: core20
 grade: stable
 confinement: strict
 
