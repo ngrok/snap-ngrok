@@ -2,8 +2,7 @@
 name: ngrok
 adopt-info: ngrok
 summary: ngrok secure introspectable tunnels to localhost.
-description: |
-	An instant, secure tunnel from a public URL to your localhost server through any NAT or firewall.
+description: An instant, secure tunnel from a public URL to your localhost server through any NAT or firewall.
 
 base: core18
 grade: stable
@@ -21,14 +20,14 @@ parts:
     source:
       - on amd64: https://bin.equinox.io/a/23C61AUP19h/ngrok-2.3.40-linux-amd64.zip
       - on i386: https://bin.equinox.io/a/e1oeYn14gE2/ngrok-2.3.40-linux-386.zip
-      - on armhf: https://bin.equinox.io/a/7PweAMhmg2R/ngrok-2.3.40-linux-arm64.zip
+      - on armhf: https://bin.equinox.io/a/4B1Ra9qfT4E/ngrok-2.3.40-linux-arm.zip
       - on arm64: https://bin.equinox.io/a/7PweAMhmg2R/ngrok-2.3.40-linux-arm64.zip
       - on s390x: https://bin.equinox.io/a/8h7y12tuRxC/ngrok-2.3.40-linux-s390x.zip
       - on ppc64el: https://bin.equinox.io/a/6nqEc1UDSka/ngrok-2.3.40-linux-ppc64le.zip
     source-checksum:
       - on amd64: sha256/a3028c933dd419933167ecd1b5f2b8b151a1d14b4b7afcbaaa3fcd5c94c03b3c
       - on i386: sha256/e2c5245293e5cfc2cfeac15d48860afb0cdfa160aa5ee088084760f412098631
-      - on armhf: sha256/261918195912466c935ede7cf55605ab0f9658d6fadb0f37f54e715ea1ec2c29
+      - on armhf: sha256/dc7475beef31caac566478391221677971c3d834bfb68e6d84cff62594aa7186
       - on arm64: sha256/261918195912466c935ede7cf55605ab0f9658d6fadb0f37f54e715ea1ec2c29
       - on s390x: sha256/8d7592bcdbb96616d3aeb87c65f4450f935d15fb06e3fcbac41403cb6a064417
       - on ppc64el: sha256/ef6e06db10699e78e052e0deb5ca371cfb4986b64a4157a5758398df0de74033
