@@ -31,3 +31,8 @@ ngrok captures and analyzes all traffic over the tunnel for later inspection and
 -   Developing any services which consume webhooks (HTTP callbacks) by allowing you to replay those requests.
 -   Debugging and understanding any web service by inspecting the HTTP traffic.
 -   Running networked services on machines that are firewalled off from the Internet.
+
+
+## Regarding: the latest release track
+
+In the transition to the v3 ngrok agent, we split tracks into `v2` and `v3`. `v3` is the new default and hence "true" latest. The `latest` track is left on our `v2` agent for supporting legacy customers but may be deprecated in the future.
