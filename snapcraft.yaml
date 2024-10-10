@@ -2,7 +2,7 @@
 name: ngrok
 adopt-info: ngrok
 summary: ngrok secure introspectable tunnels to localhost.
-description: An instant, secure tunnel from a public URL to your localhost server through any NAT or firewall.
+description: ngrok is a secure ingress platform that enables developers to add global server load balancing, reverse proxy, firewall, API gateway and Kubernetes Ingress to applications and APIs.
 
 base: core18
 grade: stable
@@ -20,12 +20,12 @@ parts:
   ngrok:
     plugin: dump
     source:
-      - on amd64: https://bin.equinox.io/a/4hvEn41eRdA/ngrok-v3-3.16.1-linux-amd64.zip
-      - on i386: https://bin.equinox.io/a/8Nm2eDSaBV6/ngrok-v3-3.16.1-linux-386.zip
-      - on armhf: https://bin.equinox.io/a/fKRCAReiQA8/ngrok-v3-3.16.1-linux-arm.zip
-      - on arm64: https://bin.equinox.io/a/37r4Uv3QLb3/ngrok-v3-3.16.1-linux-arm64.zip
-      - on s390x: https://bin.equinox.io/a/aF1g1HYcMXJ/ngrok-v3-3.16.1-linux-s390x.zip
-      - on ppc64le: https://bin.equinox.io/a/X6DCGfRPGT/ngrok-v3-3.16.1-linux-ppc64le.zip
+      - on amd64: https://bin.equinox.io/a/jn7s6jjnVat/ngrok-v3-3.17.0-linux-amd64.zip
+      - on i386: https://bin.equinox.io/a/n5dGZeDVxCy/ngrok-v3-3.17.0-linux-386.zip
+      - on armhf: https://bin.equinox.io/a/9DLDjaQ5ktT/ngrok-v3-3.17.0-linux-arm.zip
+      - on arm64: https://bin.equinox.io/a/9aCGsqr5bqn/ngrok-v3-3.17.0-linux-arm64.zip
+      - on s390x: https://bin.equinox.io/a/dLyp1uRRh91/ngrok-v3-3.17.0-linux-s390x.zip
+      - on ppc64le: https://bin.equinox.io/a/6mMKXE2VjR9/ngrok-v3-3.17.0-linux-ppc64le.zip
     override-pull: |
       snapcraftctl pull
       snapcraftctl set-version $(./ngrok --version | cut -d " " -f 3)
