@@ -20,12 +20,12 @@ parts:
   ngrok:
     plugin: dump
     source:
-      - on amd64: https://bin.equinox.io/a/czfrgLrr8Xh/ngrok-v3-3.18.4-linux-amd64.zip
-      - on i386: https://bin.equinox.io/a/iXsPV4gCve4/ngrok-v3-3.18.4-linux-386.zip
-      - on armhf: https://bin.equinox.io/a/4Ah8hMhEjxQ/ngrok-v3-3.18.4-linux-arm.zip
-      - on arm64: https://bin.equinox.io/a/98ub7A7TRqp/ngrok-v3-3.18.4-linux-arm64.zip
-      - on s390x: https://bin.equinox.io/a/9inRYL7zQnt/ngrok-v3-3.18.4-linux-s390x.zip
-      - on ppc64le: https://bin.equinox.io/a/4iRSD36nVG8/ngrok-v3-3.18.4-linux-ppc64le.zip
+      - on amd64: https://bin.equinox.io/a/3LDRf7RJF8Y/ngrok-v3-3.19.0-linux-amd64.zip
+      - on i386: https://bin.equinox.io/a/5A4nixSzP2q/ngrok-v3-3.19.0-linux-386.zip
+      - on armhf: https://bin.equinox.io/a/6SjSPJwvc8p/ngrok-v3-3.19.0-linux-arm.zip
+      - on arm64: https://bin.equinox.io/a/2XePJJCp1nE/ngrok-v3-3.19.0-linux-arm64.zip
+      - on s390x: https://bin.equinox.io/a/3Fsdjxrv8FV/ngrok-v3-3.19.0-linux-s390x.zip
+      - on ppc64le: https://bin.equinox.io/a/jF72WJNakLf/ngrok-v3-3.19.0-linux-ppc64le.zip
     override-pull: |
       snapcraftctl pull
       snapcraftctl set-version $(./ngrok --version | cut -d " " -f 3)
