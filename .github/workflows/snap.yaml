@@ -23,7 +23,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Snapcraft
-        run: sudo snap install --channel stable snapcraft --classic
+        uses: snapcore/action-build@v1
+        with:
+          target-arch: ${{ matrix.architecture }}
 
       - name: Enable Destructive Mode
         run: sudo snap set system experimental.features=destructive-mode
