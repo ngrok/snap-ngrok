@@ -53,6 +53,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: . # directory to download the artifact to
+      - name: Test install the snap
+        run: sudo snap install --dangerous ngrok-${{ matrix.architecture }}.snap
       - name: Publish to Snap Store
         uses: snapcore/action-publish@v1
         env:
