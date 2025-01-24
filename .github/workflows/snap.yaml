@@ -6,7 +6,7 @@ on: # The event that triggers the workflow
   pull_request:
     branches:
       - master # When a pull request is opened against master
-  Workflow_dispatch: # Manually trigger the workflow
+  workflow_dispatch: # Manually trigger the workflow
 
 jobs:
   build:
