@@ -34,6 +34,7 @@ jobs:
           snapcraft --destructive-mode --enable-experimental-target-arch --target-arch=${{ matrix.architecture }}
           SNAP_FILE=$(ls *.snap)
           echo "snap=$SNAP_FILE" >> $GITHUB_ENV
+          echo "::set-output name=snap::$SNAP_FILE"
 
       # Upload the snap file as an artifact
       - name: Upload Artifact
