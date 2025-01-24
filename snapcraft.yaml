@@ -1,10 +1,9 @@
-
 name: ngrok
 adopt-info: ngrok
 summary: ngrok secure introspectable tunnels to localhost.
 description: ngrok is a secure ingress platform that enables developers to add global server load balancing, reverse proxy, firewall, API gateway and Kubernetes Ingress to applications and APIs.
 
-base: core18
+base: core20
 grade: stable
 confinement: strict
 
@@ -34,7 +33,7 @@ plugs:
   ngrok-config:
     interface: personal-files
     write:
-    - $HOME/.ngrok2
+      - $HOME/.ngrok2
 
 apps:
   ngrok:
