@@ -30,6 +30,12 @@ jobs:
           sudo snap install lxd
           sudo lxd init --auto
 
+      - name: Wait for LXD to be ready
+        run: |
+          while ! sudo lxd waitready; do
+            sleep 1
+          done
+
       - name: Set architecture
         run: echo "ARCH=${{ matrix.architecture }}" >> $GITHUB_ENV
 
