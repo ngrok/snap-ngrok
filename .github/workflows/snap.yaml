@@ -10,6 +10,8 @@ on: # The event that triggers the workflow
 
 jobs:
   build:
+    # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release"
+    if: contains(github.head_ref, 'release') || github.event_name == 'push' && github.ref == 'refs/heads/master' && contains(github.head_ref, 'release')
     runs-on: ubuntu-latest
     outputs:
       snap-file: ${{ steps.build-snap.outputs.snap }}
