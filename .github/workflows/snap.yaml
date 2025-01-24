@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        architecture: [amd64, i386, armhf, arm64, s390x, ppc64le]
+        architecture: [amd64, i386, armhf, arm64, s390x] #ppc64le]
     outputs:
       snap-file: ${{ steps.build-snap.outputs.snap }}
     steps:
@@ -32,7 +32,8 @@ jobs:
         id: build-snap
         run: |
           snapcraft --destructive-mode --enable-experimental-target-arch --target-arch=${{ matrix.architecture }}
-          echo "snap=${{ matrix.architecture }}.snap" >> $GITHUB_ENV
+          SNAP_FILE=$(ls *.snap)
+          echo "snap=$SNAP_FILE" >> $GITHUB_ENV
 
       # Upload the snap file as an artifact
       - name: Upload Artifact
