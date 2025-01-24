@@ -1,8 +1,9 @@
 name: snap
 on: # The event that triggers the workflow
-  [push, pull_request, workflow_dispatch] # When a commit is created or a pull request is opened:
+  [push, pull_request] # When a commit is created or a pull request is opened:
     branches:
       - master
+  workflow_dispatch: # When the workflow is manually triggered
 
 jobs:
   build:
