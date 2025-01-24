@@ -1,0 +1,50 @@
+name: snap
+on: # The event that triggers the workflow
+  push:
+    branches:
+      - master # When a commit is created on master
+  pull_request:
+    branches:
+      - master # When a pull request is opened against master
+  Workflow_dispatch: # Manually trigger the workflow
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      snap-file: ${{ steps.build-snap.outputs.snap }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build the snap # generates .snap file and stores its name in the variable steps.build-snap.outputs.snap
+        uses: snapcore/action-build@v1
+        id: build-snap
+
+      # Make sure the snap is installable
+      - run: |
+          sudo snap install --dangerous ${{ steps.build-snap.outputs.snap }}
+
+      # Do some testing
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ngrok
+          path: ${{ steps.build-snap.outputs.snap }}
+
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download package
+        uses: actions/download-artifact@v3
+        with:
+          name: ngrok
+          path: .
+      - name: Publish to Snap Store
+        uses: snapcore/action-publish@v1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
+        with:
+          snap: ${{needs.build.outputs.snap-file}}
+          release: edge
