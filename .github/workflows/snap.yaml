@@ -34,12 +34,9 @@ jobs:
           snapcraft --destructive-mode --enable-experimental-target-arch --target-arch=${{ matrix.architecture }}
           echo "snap=${{ matrix.architecture }}.snap" >> $GITHUB_ENV
 
-      # Make sure the snap is installable
-      - run: |
-          sudo snap install --dangerous ${{ env.snap }}
-
       # Upload the snap file as an artifact
-      - uses: actions/upload-artifact@v4
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: ngrok-${{ matrix.architecture }}
           path: ${{ env.snap }}
@@ -61,7 +58,4 @@ jobs:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
         with:
           snap: ${{needs.build.outputs.snap-file}}
-          # changes on the master branch we would like to publish to the edge risk level, so edge always has the latest changes which may not be considered as stable.
-          # On the other hand, if we are on a tagged version, we would like to publish to the candidate risk level.
-          # After thorough testing, the maintainer can manually promote the snap to beta/stable.
           release: stable
