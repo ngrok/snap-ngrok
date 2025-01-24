@@ -24,8 +24,6 @@ jobs:
 
       - name: Set up Snapcraft
         run: sudo snap install snapcraft --classic
-        with:
-          snapcraft-args:
 
       - name: Install Multipass
         run: sudo snap install multipass --classic
