@@ -23,14 +23,22 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Snapcraft
-        uses: snapcore/action-build@v1
+        run: sudo snap install snapcraft --classic
         with:
-          snapcraft-args: --target-arch=${{ matrix.architecture }}
+          snapcraft-args:
+
+      - name: Install Multipass
+        run: sudo snap install multipass --classic
+
+      - name: Ensure Multipass is running
+        run: |
+          sudo multipass launch --name snapcraft-builder
+          sudo multipass exec snapcraft-builder -- sudo snap install snapcraft --classic
 
       - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
         id: build-snap
         run: |
-          snapcraft
+          snapcraft --destructive-mode --enable-experimental-target-arch --target-arch=${{ matrix.architecture }}
           echo "snap=${{ matrix.architecture }}.snap" >> $GITHUB_ENV
 
       # Make sure the snap is installable
