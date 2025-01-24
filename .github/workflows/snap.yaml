@@ -13,31 +13,33 @@ jobs:
     # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
     if: contains(github.ref, 'release') || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        architecture: [amd64, i386, armhf, arm64, s390x, ppc64le]
     outputs:
       snap-file: ${{ steps.build-snap.outputs.snap }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Debug Info
-        run: |
-          echo "github.ref: ${{ github.ref }}"
-          echo "github.head_ref: ${{ github.head_ref }}"
-          echo "github.event_name: ${{ github.event_name }}"
+      - name: Set up Snapcraft
+        run: sudo snap install snapcraft --classic
 
-      - name: Build the snap # generates .snap file and stores its name in the variable steps.build-snap.outputs.snap
-        uses: snapcore/action-build@v1
+      - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
         id: build-snap
+        run: |
+          snapcraft --target-arch=${{ matrix.architecture }}
+          echo "snap=${{ matrix.architecture }}.snap" >> $GITHUB_ENV
 
       # Make sure the snap is installable
       - run: |
-          sudo snap install --dangerous ${{ steps.build-snap.outputs.snap }}
+          sudo snap install --dangerous ${{ env.snap }}
 
-      # Do some testing
+      # Upload the snap file as an artifact
       - uses: actions/upload-artifact@v4
         with:
-          name: ngrok
-          path: ${{ steps.build-snap.outputs.snap }}
+          name: ngrok-${{ matrix.architecture }}
+          path: ${{ env.snap }}
 
   publish:
     # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
@@ -48,7 +50,7 @@ jobs:
       - name: Download package
         uses: actions/download-artifact@v4
         with:
-          name: ngrok
+          name: ngrok-${{ matrix.architecture }}
           path: .
       - name: Publish to Snap Store
         uses: snapcore/action-publish@v1
