@@ -10,7 +10,7 @@ on: # The event that triggers the workflow
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     outputs:
       snap-file: ${{ steps.build-snap.outputs.snap }}
     steps:
