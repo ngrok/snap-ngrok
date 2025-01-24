@@ -25,16 +25,8 @@ jobs:
       - name: Set up Snapcraft
         run: sudo snap install snapcraft --classic
 
-      - name: Install LXD
-        run: |
-          sudo snap install lxd
-          sudo lxd init --auto
-
-      - name: Wait for LXD to be ready
-        run: |
-          while ! sudo lxd waitready; do
-            sleep 1
-          done
+      - name: Install Multipass
+        run: sudo snap install multipass --classic
 
       - name: Set architecture
         run: echo "ARCH=${{ matrix.architecture }}" >> $GITHUB_ENV
@@ -42,7 +34,7 @@ jobs:
       - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
         id: build-snap
         run: |
-          snapcraft --use-lxd
+          snapcraft --use-multipass --target-arch=${{ matrix.architecture }}
           echo "snap=${{ matrix.architecture }}.snap" >> $GITHUB_ENV
 
       # Make sure the snap is installable
