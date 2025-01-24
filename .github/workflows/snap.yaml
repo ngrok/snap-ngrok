@@ -32,9 +32,9 @@ jobs:
           path: ${{ steps.build-snap.outputs.snap }}
 
   publish:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/') # master branch or tagged version
     runs-on: ubuntu-latest
-    needs: build
+    needs: build # Wait for build job to be done
     steps:
       - name: Download package
         uses: actions/download-artifact@v4
@@ -47,4 +47,7 @@ jobs:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
         with:
           snap: ${{needs.build.outputs.snap-file}}
-          release: edge
+          # changes on the master branch we would like to publish to the edge risk level, so edge always has the latest changes which may not be considered as stable.
+          # On the other hand, if we are on a tagged version, we would like to publish to the candidate risk level.
+          # After thorough testing, the maintainer can manually promote the snap to beta/stable.
+          release: ${{ startsWith(github.ref, 'refs/tags/') && 'candidate' || 'edge'}}
