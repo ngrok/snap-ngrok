@@ -13,6 +13,11 @@ jobs:
     # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
     if: contains(github.ref, 'release') || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        architecture: [amd64, i386, armhf, arm64, s390x] #ppc64le]
+    outputs:
+      snap-file: ${{ steps.build-snap.outputs.snap }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -23,15 +28,6 @@ jobs:
       - name: Install Multipass
         run: sudo snap install multipass --classic
 
-  upload-artifact:
-    strategy:
-      matrix:
-        architecture: [amd64, i386, armhf, arm64, s390x] #ppc64le]
-    runs-on: ubuntu-latest
-    needs: install-deps
-    outputs:
-      snap-file: ${{ steps.build-snap.outputs.snap }}
-    steps:
       - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
         id: build-snap
         run: |
