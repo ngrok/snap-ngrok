@@ -8,12 +8,11 @@ grade: stable
 confinement: strict
 
 architectures:
-  - build-on: amd64
-  - build-on: i386
-  - build-on: armhf
-  - build-on: arm64
-  - build-on: s390x
-  #- build-on: ppc64le
+  - build-on: [amd64]
+  - build-on: [i386]
+  - build-on: [armhf]
+  - build-on: [arm64]
+  - build-on: [s390x]
 
 parts:
   ngrok:
@@ -24,7 +23,6 @@ parts:
       - on armhf: https://bin.equinox.io/a/fB2XkincXBG/ngrok-v3-3.19.1-linux-arm.zip
       - on arm64: https://bin.equinox.io/a/96AhmnoTXuz/ngrok-v3-3.19.1-linux-arm64.zip
       - on s390x: https://bin.equinox.io/a/kLoGADrsu9d/ngrok-v3-3.19.1-linux-s390x.zip
-      #- on ppc64le: https://bin.equinox.io/a/5U2LkSwxSBr/ngrok-v3-3.19.1-linux-ppc64le.zip
     override-pull: |
       craftctl default
       craftctl set version=$(./ngrok --version | cut -d " " -f 3)
