@@ -58,7 +58,7 @@ jobs:
         run: ls -la
 
       - name: Test install the snap
-        run: sudo snap install --dangerous ngrok-${{ matrix.architecture }}.snap
+        run: sudo snap install --dangerous ngrok-*.snap
 
       - name: Publish to Snap Store
         uses: snapcore/action-publish@v1
