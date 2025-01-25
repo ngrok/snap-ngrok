@@ -43,6 +43,11 @@ jobs:
           name: ngrok-${{ matrix.architecture }}
           path: ${{ env.snap }}
 
+      - name: Cleanup
+        run: |
+          snapcraft clean --destructive-mode
+          rm -rf prime parts stage
+
   publish:
     # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
     if: (github.event_name == 'push' && github.ref == 'refs/heads/master' && contains(github.ref, 'release')) || github.event_name == 'workflow_dispatch'
