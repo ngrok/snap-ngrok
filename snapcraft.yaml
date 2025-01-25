@@ -27,7 +27,7 @@ parts:
       #- on ppc64le: https://bin.equinox.io/a/5U2LkSwxSBr/ngrok-v3-3.19.1-linux-ppc64le.zip
     override-pull: |
       craftctl default
-      craftctl set-version $(./ngrok --version | cut -d " " -f 3)
+      craftctl set version=$(./ngrok --version | cut -d " " -f 3)
 
 plugs:
   ngrok-config:
