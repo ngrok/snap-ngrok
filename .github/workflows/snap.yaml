@@ -58,7 +58,8 @@ jobs:
         run: ls -la
 
       - name: Test install the snap
-        run: sudo snap install --dangerous ngrok-*.snap
+        run: |
+          sudo snap install --dangerous ngrok-amd64 ngrok-i386 ngrok-armhf ngrok-arm64 ngrok-s390x
 
       - name: Publish to Snap Store
         uses: snapcore/action-publish@v1
