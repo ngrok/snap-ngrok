@@ -55,8 +55,7 @@ jobs:
           path: ngrok
           pattern: ngrok-*
           merge-multiple: true
-
-      - run: ls -l ngrok
+      - run: ls -R ngrok
 
       - name: Publish to Snap Store
         env:
