@@ -56,12 +56,13 @@ jobs:
           pattern: ngrok-*
           merge-multiple: true
 
-      - run: ls -l
+      - run: ls -l ngrok
 
       - name: Publish to Snap Store
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
         run: |
+          sudo snap install snapcraft --classic
           for snap in ngrok/*.snap; do
             echo "Publishing $snap"
             snapcraft push "$snap" --release=stable
