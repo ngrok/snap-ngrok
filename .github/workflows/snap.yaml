@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ngrok-${{ matrix.architecture }}
-          path: ${{ env.snap }}
+          path: ${{ env.snap }}.snap
 
   publish:
     # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
@@ -55,7 +55,7 @@ jobs:
           path: . # directory to download the artifact to
 
       - name: Debug Downloaded Files
-        run: ls -la
+        run: ls -p | grep -v / # List the files in the current directory
 
       - name: Test install the snap
         run: |
