@@ -59,12 +59,14 @@ jobs:
           path: ngrok
           pattern: ngrok-*
           merge-multiple: true
+
       - run: ls -R ngrok-* # List the artifacts
 
       - name: Publish to Snap Store
-        uses: snapcore/action-publish@v1
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
-        with:
-          snap: ${{needs.upload-artifact.outputs.snap-file}}
-          release: stable
+        run: |
+          for snap in ngrok/*.snap; do
+            echo "Publishing $snap"
+            snapcraft push "$snap" --release=stable
+          done
