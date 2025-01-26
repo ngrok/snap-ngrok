@@ -25,9 +25,6 @@ jobs:
       - name: Set up Snapcraft
         run: sudo snap install snapcraft --classic
 
-      - name: Install Multipass
-        run: sudo snap install multipass --classic
-
       - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
         id: build-snap
         run: |
