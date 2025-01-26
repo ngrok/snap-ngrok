@@ -12,7 +12,7 @@ jobs:
   install:
     # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
     if: contains(github.ref, 'release') || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
     # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
     if: contains(github.ref, 'release') || github.event_name == 'workflow_dispatch'
     needs: install # Wait for the install job to complete
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         architecture: [amd64, i386, armhf, arm64, s390x] #ppc64le]
@@ -54,7 +54,7 @@ jobs:
   # publish:
   #   # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
   #   if: (github.event_name == 'push' && github.ref == 'refs/heads/master' && contains(github.ref, 'release')) || github.event_name == 'workflow_dispatch'
-  #   runs-on: ubuntu-latest
+  #   runs-on: ubuntu-22.04
   #   needs: build # Wait for the build job to complete
   #   steps:
   #     - name: Download All Artifacts
