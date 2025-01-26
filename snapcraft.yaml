@@ -30,7 +30,8 @@ parts:
       - on amd64 to s390x: https://bin.equinox.io/a/kLoGADrsu9d/ngrok-v3-3.19.1-linux-s390x.zip
     override-pull: |
       craftctl default
-      craftctl set version=$(./ngrok --version | cut -d " " -f 3)
+      VERSION=$(echo $CRAFT_SOURCE | grep -o 'ngrok-v3-[0-9.]*' | cut -d'-' -f3)
+      craftctl set version=$VERSION
 
 plugs:
   ngrok-config:
