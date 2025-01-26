@@ -9,9 +9,20 @@ on: # The event that triggers the workflow
   workflow_dispatch: # When the workflow is manually triggered
 
 jobs:
+  install:
+    # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
+    if: contains(github.ref, 'release') || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install snapcraft
+        run: sudo snap install snapcraft
   build:
     # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
     if: contains(github.ref, 'release') || github.event_name == 'workflow_dispatch'
+    needs: install # Wait for the install job to complete
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -22,11 +33,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install build dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gcc-aarch64-linux-gnu gcc-arm-linux-gnueabihf gcc-s390x-linux-gnu gcc-i686-linux-gnu
-          sudo snap install snapcraft
+      - name: Install snapcraft
+        run: sudo snap install snapcraft
 
       - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
         id: build-snap
