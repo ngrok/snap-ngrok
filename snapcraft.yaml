@@ -25,7 +25,7 @@ parts:
       - on s390x: https://bin.equinox.io/a/kLoGADrsu9d/ngrok-v3-3.19.1-linux-s390x.zip
     override-pull: |
       snapcraftctl pull
-      craftctl set version=$(./ngrok --version | cut -d " " -f 3)
+      snapcraftctl set-version $(./ngrok --version | cut -d " " -f 3)
 
 plugs:
   ngrok-config:
