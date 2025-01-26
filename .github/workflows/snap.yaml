@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install snapcraft
-        run: sudo snap install snapcraft
+        run: sudo apt install snapcraft
   build:
     # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
     if: contains(github.ref, 'release') || github.event_name == 'workflow_dispatch'
@@ -30,19 +30,14 @@ jobs:
     outputs:
       snap-file: ${{ steps.build-snap.outputs.snap }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install snapcraft
-        run: sudo snap install snapcraft
-
       - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
         id: build-snap
         run: |
-          snapcraft --destructive-mode --build-for=${{matrix.architecture}}
+          snapcraft
           SNAP_FILE=$(ls *.snap)
           echo "snap=$SNAP_FILE" >> $GITHUB_ENV
           echo "snap=$SNAP_FILE" >> $GITHUB_OUTPUT
+          ls -R
 
       # Upload the snap file as an artifact
       - name: Upload Artifact
