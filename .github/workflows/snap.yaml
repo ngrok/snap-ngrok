@@ -42,10 +42,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: ngrok-snaps
-          pattern: "*.snap"
           merge-multiple: true
 
-      - run: ls -R ngrok-snaps
+      - run: ls -R
 
       # - name: Publish to Snap Store
       #   env:
