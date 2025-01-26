@@ -22,12 +22,8 @@ jobs:
       - name: Install snapcraft and deps
         run: |
           sudo apt install snapcraft
-          sudo snap install lxd
-          sudo snap services lxd lxd.activate
-          sudo snap services lxd lxd.daemon
-          sudo snap services lxd lxd.user-daemon
 
-          lxd init --auto
+          sudo lxd init --auto
 
       - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
         id: build-snap
