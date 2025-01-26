@@ -23,6 +23,10 @@ jobs:
         run: |
           sudo apt install snapcraft
           sudo snap install lxd
+          sudo chown root:lxd /var/snap/lxd/common/lxd/unix.socket
+          sudo chmod 664 /var/snap/lxd/common/lxd/unix.socket
+          sudo chmod u+s /var/snap/lxd/common/lxd/unix.socket
+
           lxd init --auto
 
       - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
