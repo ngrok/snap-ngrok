@@ -19,13 +19,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install snapcraft and deps
-        run: |
-          sudo apt install snapcraft
-          sudo ufw allow in on lxdbr0 sudo ufw route allow in on lxdbr0 sudo ufw route allow out on lxdbr0
-
-          sudo lxd init --auto
-
       - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
         id: build-snap
         run: |
