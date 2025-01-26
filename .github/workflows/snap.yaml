@@ -38,14 +38,14 @@ jobs:
     runs-on: ubuntu-22.04
     needs: build # Wait for the build job to complete
     steps:
-      - run: ls -R ngrok-snaps
-
       - name: Download All Snap Artifacts
         uses: actions/download-artifact@v4
         with:
           path: ngrok-snaps
           pattern: "*.snap"
           merge-multiple: true
+
+      - run: ls -R ngrok-snaps
 
       # - name: Publish to Snap Store
       #   env:
