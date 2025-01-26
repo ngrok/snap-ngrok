@@ -21,6 +21,7 @@ jobs:
 
       - name: Install snapcraft and deps
         run: |
+          which snapcraft
           sudo apt install snapcraft
 
       - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
