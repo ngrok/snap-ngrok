@@ -29,29 +29,30 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ngrok-${{ matrix.architecture }}
-          path: ${{ env.snap }}
+          name: ngrok-snaps
+          path: ./*.snap
 
-  # publish:
-  #   # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
-  #   if: (github.event_name == 'push' && github.ref == 'refs/heads/master' && contains(github.ref, 'release')) || github.event_name == 'workflow_dispatch'
-  #   runs-on: ubuntu-22.04
-  #   needs: build # Wait for the build job to complete
-  #   steps:
-  #     - name: Download All Artifacts
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         path: ngrok
-  #         pattern: ngrok-*
-  #         merge-multiple: true
-  #     - run: ls -R ngrok
+  publish:
+    # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/master' && contains(github.ref, 'release')) || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-22.04
+    needs: build # Wait for the build job to complete
+    steps:
+      - run: ls -R ngrok-snaps
 
-  #     - name: Publish to Snap Store
-  #       env:
-  #         SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
-  #       run: |
-  #         sudo snap install snapcraft --classic
-  #         for snap in ngrok/*.snap; do
-  #           echo "Publishing $snap"
-  #           snapcraft push "$snap" --release=stable
-  #         done
+      - name: Download All Snap Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ngrok-snaps
+          pattern: "*.snap"
+          merge-multiple: true
+
+      # - name: Publish to Snap Store
+      #   env:
+      #     SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
+      #   run: |
+      #     sudo snap install snapcraft --classic
+      #     for snap in ngrok/*.snap; do
+      #       echo "Publishing $snap"
+      #       snapcraft push "$snap" --release=stable
+      #     done
