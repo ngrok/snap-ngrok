@@ -8,8 +8,8 @@ grade: stable
 confinement: strict
 
 architectures:
-  - build-on: amd64
-    build-for: [amd64, i386, armhf, arm64, s390x]
+  - build-on: [amd64, i386, armhf, arm64, s390x]
+    build-for: all
 
 parts:
   ngrok:
