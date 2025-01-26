@@ -3,16 +3,16 @@ adopt-info: ngrok
 summary: ngrok secure introspectable tunnels to localhost.
 description: ngrok is a secure ingress platform that enables developers to add global server load balancing, reverse proxy, firewall, API gateway and Kubernetes Ingress to applications and APIs.
 
-base: core22
+base: core24
 grade: stable
 confinement: strict
 
-architectures:
-  - build-on: amd64
-  - build-on: i386
-  - build-on: armhf
-  - build-on: arm64
-  - build-on: s390x
+platforms:
+  amd64:
+  i386:
+  armhf:
+  arm64:
+  s390x:
 
 parts:
   ngrok:
