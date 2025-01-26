@@ -8,16 +8,12 @@ grade: stable
 confinement: strict
 
 architectures: # github actions uses amd64 as host architecture
-  - build-on: amd64
-    run-on: [amd64]
-  - build-on: amd64
-    run-on: [i386]
-  - build-on: amd64
-    run-on: [armhf]
-  - build-on: amd64
-    run-on: [arm64]
-  - build-on: amd64
-    run-on: [s390x]
+  - build-on: [amd64]
+  - build-for: [amd64]
+  - build-for: [i386]
+  - build-for: [armhf]
+  - build-for: [arm64]
+  - build-for: [s390x]
 
 parts:
   ngrok:
