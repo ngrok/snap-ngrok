@@ -9,7 +9,6 @@ confinement: strict
 
 architectures:
   - build-on: [amd64, i386, armhf, arm64, s390x]
-    build-for: all
 
 parts:
   ngrok:
