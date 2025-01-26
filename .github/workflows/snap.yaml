@@ -22,13 +22,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Snapcraft
-        run: sudo snap install snapcraft --classic
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-aarch64-linux-gnu gcc-arm-linux-gnueabihf gcc-s390x-linux-gnu gcc-i686-linux-gnu
+          sudo snap install snapcraft --classic
 
       - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
         id: build-snap
         run: |
-          snapcraft --destructive-mode --enable-experimental-target-arch --target-arch=${{ matrix.architecture }}
+          snapcraft --destructive-mode
           SNAP_FILE=$(ls *.snap)
           echo "snap=$SNAP_FILE" >> $GITHUB_ENV
           echo "snap=$SNAP_FILE" >> $GITHUB_OUTPUT
