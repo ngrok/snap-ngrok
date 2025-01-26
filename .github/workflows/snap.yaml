@@ -23,16 +23,6 @@ jobs:
         run: |
           sudo snap install snapcraft --classic
 
-      # - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
-      #   id: build-snap
-      #   run: |
-      #     sudo lxd init --auto
-      #     sudo snapcraft --use-lxd
-      #     SNAP_FILE=$(ls *.snap)
-      #     echo "snap=$SNAP_FILE" >> $GITHUB_ENV
-      #     echo "snap=$SNAP_FILE" >> $GITHUB_OUTPUT
-      #     ls -R
-
       - uses: snapcore/action-build@v1
 
       # Upload the snap file as an artifact
