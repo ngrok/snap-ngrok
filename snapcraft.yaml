@@ -31,7 +31,7 @@ parts:
     override-pull:
       | # pwd is the part's source directory in parts/<part name>/src/
       craftctl default
-      craftctl set version=$(./ngrok --version | cut -d " " -f 3)
+      craftctl set version=3.19.1
 
 plugs:
   ngrok-config:
