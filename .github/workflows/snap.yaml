@@ -23,9 +23,7 @@ jobs:
         run: |
           sudo apt install snapcraft
           sudo snap install lxd
-          sudo chown root:lxd /var/snap/lxd/common/lxd/unix.socket
-          sudo chmod 664 /var/snap/lxd/common/lxd/unix.socket
-          sudo chmod u+s /var/snap/lxd/common/lxd/unix.socket
+          snap services lxd lxd.activate
 
           lxd init --auto
 
