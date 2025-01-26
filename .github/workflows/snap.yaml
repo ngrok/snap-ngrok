@@ -19,8 +19,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install snapcraft
-        run: sudo apt install snapcraft
+      - name: Install snapcraft and deps
+        run: |
+          sudo apt install snapcraft
+          sudo snap install lxd
+          lxd init --auto
 
       - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
         id: build-snap
