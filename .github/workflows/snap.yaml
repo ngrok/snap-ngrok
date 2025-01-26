@@ -23,7 +23,9 @@ jobs:
         run: |
           sudo apt install snapcraft
           sudo snap install lxd
-          snap services lxd lxd.activate
+          sudo snap services lxd lxd.activate
+          sudo snap services lxd lxd.daemon
+          sudo snap services lxd lxd.user-daemon
 
           lxd init --auto
 
