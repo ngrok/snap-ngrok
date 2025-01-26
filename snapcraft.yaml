@@ -24,7 +24,7 @@ parts:
       - on arm64: https://bin.equinox.io/a/96AhmnoTXuz/ngrok-v3-3.19.1-linux-arm64.zip
       - on s390x: https://bin.equinox.io/a/kLoGADrsu9d/ngrok-v3-3.19.1-linux-s390x.zip
     override-pull: |
-      craftctl default
+      snapcraftctl default
       craftctl set version=$(./ngrok --version | cut -d " " -f 3)
 
 plugs:
