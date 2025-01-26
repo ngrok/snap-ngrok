@@ -28,7 +28,7 @@ jobs:
       - name: Build the snap # Build the snap for the specified architecture in the matrix strategy above and save the snap file path to an output
         id: build-snap
         run: |
-          snapcraft --destructive-mode -enable-experimental-target-arch --target-arch=${{ matrix.architecture }}
+          snapcraft --destructive-mode --enable-experimental-target-arch --target-arch=${{ matrix.architecture }}
           SNAP_FILE=$(ls *.snap)
           echo "snap=$SNAP_FILE" >> $GITHUB_ENV
           echo "snap=$SNAP_FILE" >> $GITHUB_OUTPUT
