@@ -1,4 +1,3 @@
-
 name: ngrok
 adopt-info: ngrok
 summary: ngrok secure introspectable tunnels to localhost.
@@ -23,7 +22,7 @@ architectures: # github actions uses amd64 as host architecture
 parts:
   ngrok:
     plugin: dump # used for unpacking the zip files
-    source:
+    source: # location of the source code
       - on amd64 to amd64: https://bin.equinox.io/a/cp4zbqoWWC1/ngrok-v3-3.19.1-linux-amd64.zip
       - on amd64 to i386: https://bin.equinox.io/a/7RDEFXtBbAj/ngrok-v3-3.19.1-linux-386.zip
       - on amd64 to armhf: https://bin.equinox.io/a/fB2XkincXBG/ngrok-v3-3.19.1-linux-arm.zip
@@ -38,7 +37,7 @@ plugs:
   ngrok-config:
     interface: personal-files
     write:
-    - $HOME/.ngrok2
+      - $HOME/.ngrok2
 
 apps:
   ngrok:
