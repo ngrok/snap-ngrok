@@ -3,7 +3,7 @@ adopt-info: ngrok
 summary: ngrok secure introspectable tunnels to localhost.
 description: ngrok is a secure ingress platform that enables developers to add global server load balancing, reverse proxy, firewall, API gateway and Kubernetes Ingress to applications and APIs.
 
-base: core22
+base: core22 # Ubuntu 22.04 LTS
 grade: stable
 confinement: strict
 
