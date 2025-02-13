@@ -2,15 +2,18 @@ name: snap
 on: # The event that triggers the workflow
   push:
     branches:
-      - master # When a commit is created on master
+      - main # When a commit is created on main
   pull_request:
     branches:
-      - master # When a pull request is opened against master
+      - main # When a pull request is opened against main
   workflow_dispatch: # When the workflow is manually triggered
 
 jobs:
   build:
-    # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
+    # It will run if:
+    # 1. The branch name contains the word 'release',
+    # OR
+    # 2. The event triggering the workflow is a 'workflow_dispatch' event. (manual run)
     if: contains(github.ref, 'release') || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-22.04
     outputs:
@@ -33,8 +36,13 @@ jobs:
           path: ./*.snap
 
   publish:
-    # Only run this job if the branch name contains "release" or a commit is created on master branch and the branch name contains "release" or manually triggered
-    if: (github.event_name == 'push' && github.ref == 'refs/heads/master' && contains(github.ref, 'release')) || github.event_name == 'workflow_dispatch'
+    # It will run if:
+    # 1. The event triggering the workflow is a 'push' event,
+    # 2. The push is to the 'main' branch,
+    # 3. The branch name contains the word 'release',
+    # OR
+    # 4. The event triggering the workflow is a 'workflow_dispatch' event. (manual run)
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.ref, 'release')) || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-22.04
     needs: build # Wait for the build job to complete
     steps:
