@@ -1,3 +1,4 @@
+
 name: ngrok
 adopt-info: ngrok
 summary: ngrok secure introspectable tunnels to localhost.
@@ -22,22 +23,22 @@ architectures: # github actions uses amd64 as host architecture
 parts:
   ngrok:
     plugin: dump # used for unpacking the zip files
-    source: # location of the source code
-      - on amd64 to amd64: https://bin.equinox.io/a/cp4zbqoWWC1/ngrok-v3-3.19.1-linux-amd64.zip
-      - on amd64 to i386: https://bin.equinox.io/a/7RDEFXtBbAj/ngrok-v3-3.19.1-linux-386.zip
-      - on amd64 to armhf: https://bin.equinox.io/a/fB2XkincXBG/ngrok-v3-3.19.1-linux-arm.zip
-      - on amd64 to arm64: https://bin.equinox.io/a/96AhmnoTXuz/ngrok-v3-3.19.1-linux-arm64.zip
-      - on amd64 to s390x: https://bin.equinox.io/a/kLoGADrsu9d/ngrok-v3-3.19.1-linux-s390x.zip
+    source:
+      - on amd64 to amd64: https://bin.equinox.io/a/k5mLNMTW7SJ/ngrok-v3-3.20.0-linux-amd64.zip
+      - on amd64 to i386: https://bin.equinox.io/a/9tM1paJ3fLw/ngrok-v3-3.20.0-linux-386.zip
+      - on amd64 to armhf: https://bin.equinox.io/a/hZkgRJVBNuG/ngrok-v3-3.20.0-linux-arm.zip
+      - on amd64 to arm64: https://bin.equinox.io/a/94tv1TbCi7i/ngrok-v3-3.20.0-linux-arm64.zip
+      - on amd64 to s390x: https://bin.equinox.io/a/f6719zWyJim/ngrok-v3-3.20.0-linux-s390x.zip
     override-pull:
       | # pwd is the part's source directory in parts/<part name>/src/
       craftctl default
-      craftctl set version=3.19.1
+      craftctl set version=3.20.0
 
 plugs:
   ngrok-config:
     interface: personal-files
     write:
-      - $HOME/.ngrok2
+    - $HOME/.ngrok2
 
 apps:
   ngrok:
