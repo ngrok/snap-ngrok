@@ -15,8 +15,11 @@ jobs:
     # 1. The event triggering the workflow is a 'pull_request' event,
     # 2. The branch name contains the word 'release',
     # OR
-    # 3. The event triggering the workflow is a 'workflow_dispatch' event. (manual run)
-    if: (github.event_name == 'pull_request' && contains(github.head_ref, 'release')) || github.event_name == 'workflow_dispatch'
+    # 3. The event triggering the workflow is a push event
+    # 4. The pushed branch name contains the word 'release',
+    # OR
+    # 5. The event triggering the workflow is a 'workflow_dispatch' event. (manual run)
+    if: (github.event_name == 'pull_request' && contains(github.head_ref, 'release')) || (github.event_name == 'push' && contains(github.ref, 'release'))|| github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-22.04
     outputs:
       snap-file: ${{ steps.build-snap.outputs.snap }}
