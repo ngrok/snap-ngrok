@@ -1,11 +1,12 @@
 name: snap
-on: # The event that triggers the workflow
+on:
   push:
     branches:
       - main # When a commit is created on main
   pull_request:
+    types: [opened, reopened] # when a pull request is opened or reopened
     branches:
-      - main # When a pull request is opened against main
+      - main # the branch that the pull request is targeting
   workflow_dispatch: # When the workflow is manually triggered
 
 jobs:
