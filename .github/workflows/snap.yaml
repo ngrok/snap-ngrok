@@ -11,11 +11,6 @@ on:
 
 jobs:
   build:
-    # It will run if:
-    # 1. The branch name contains the word 'release',
-    # OR
-    # 2. The event triggering the workflow is a 'workflow_dispatch' event. (manual run)
-    if: contains(github.ref, 'release') || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-22.04
     outputs:
       snap-file: ${{ steps.build-snap.outputs.snap }}
