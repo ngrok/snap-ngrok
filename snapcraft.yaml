@@ -24,15 +24,15 @@ parts:
   ngrok:
     plugin: dump # used for unpacking the zip files
     source:
-      - on amd64 to amd64: https://bin.equinox.io/a/eEzDbkEVuFL/ngrok-v3-3.23.0-linux-amd64.zip
-      - on amd64 to i386: https://bin.equinox.io/a/259ZZ1Jfgad/ngrok-v3-3.23.0-linux-386.zip
-      - on amd64 to armhf: https://bin.equinox.io/a/kjdyj1VUBJy/ngrok-v3-3.23.0-linux-arm.zip
-      - on amd64 to arm64: https://bin.equinox.io/a/5RDDT8Q3AUw/ngrok-v3-3.23.0-linux-arm64.zip
-      - on amd64 to s390x: https://bin.equinox.io/a/na9dcUPLctY/ngrok-v3-3.23.0-linux-s390x.zip
+      - on amd64 to amd64: https://bin.equinox.io/a/6zPzfqgJDEx/ngrok-v3-3.23.1-linux-amd64.zip
+      - on amd64 to i386: https://bin.equinox.io/a/h7GoQKfnbuq/ngrok-v3-3.23.1-linux-386.zip
+      - on amd64 to armhf: https://bin.equinox.io/a/gCVNgjrtMou/ngrok-v3-3.23.1-linux-arm.zip
+      - on amd64 to arm64: https://bin.equinox.io/a/28XJbmpS8on/ngrok-v3-3.23.1-linux-arm64.zip
+      - on amd64 to s390x: https://bin.equinox.io/a/eoBdDWDXZ71/ngrok-v3-3.23.1-linux-s390x.zip
     override-pull:
       | # pwd is the part's source directory in parts/<part name>/src/
       craftctl default
-      craftctl set version=3.23.0
+      craftctl set version=3.23.1
 
 plugs:
   ngrok-config:
