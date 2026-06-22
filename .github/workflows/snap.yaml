@@ -65,5 +65,5 @@ jobs:
           sudo snap install snapcraft --classic
           for snap in ngrok-snaps/*.snap; do
             echo "Publishing $snap"
-            snapcraft push "$snap" --release=stable
+            snapcraft upload "$snap" --release=stable
           done
