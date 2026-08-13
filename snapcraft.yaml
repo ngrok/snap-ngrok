@@ -39,6 +39,7 @@ plugs:
     interface: personal-files
     write:
     - $HOME/.ngrok2
+    - $HOME/.config/ngrok
 
 apps:
   ngrok:
