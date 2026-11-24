@@ -25,17 +25,17 @@ jobs:
       snap-file: ${{ steps.build-snap.outputs.snap }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.8.0
 
       - name: Install snapcraft
         run: |
           sudo snap install snapcraft --classic
 
-      - uses: snapcore/action-build@v1
+      - uses: snapcore/action-build@v1.3.0
 
       # Upload the snap file as an artifact
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: ngrok-snaps
           path: ./*.snap
@@ -51,7 +51,7 @@ jobs:
     needs: build # Wait for the build job to complete
     steps:
       - name: Download All Snap Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.3.0
         with:
           path: ngrok-snaps
           merge-multiple: true
